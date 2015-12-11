@@ -1,7 +1,10 @@
+require('./node_modules/angular-material/angular-material.css')
+
 const angular = require('angular')
 const ngRoute = require('angular-route')
+const ngMaterial = require('angular-material')
 
-const app = angular.module('signum', [ngRoute])
+const app = angular.module('signum', [ngRoute, ngMaterial])
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
