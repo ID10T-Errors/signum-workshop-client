@@ -1,0 +1,23 @@
+{
+  "name": "signum-workshop-client",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ID10T-Errors/signum-workshop-client.git"
+  },
+  "keywords": [
+    "signum",
+    "workshop"
+  ],
+  "author": "ID10T Errors",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ID10T-Errors/signum-workshop-client/issues"
+  },
+  "homepage": "https://github.com/ID10T-Errors/signum-workshop-client#readme"
+}
