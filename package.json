@@ -22,6 +22,9 @@
   "homepage": "https://github.com/ID10T-Errors/signum-workshop-client#readme",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-animate": "^1.4.8",
+    "angular-aria": "^1.4.8",
+    "angular-material": "^0.11.4",
     "angular-route": "^1.4.8"
   },
   "devDependencies": {
