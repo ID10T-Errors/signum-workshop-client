@@ -29,5 +29,10 @@
   },
   "devDependencies": {
     "browserify-css": "^0.8.2"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-css"
+    ]
   }
 }
