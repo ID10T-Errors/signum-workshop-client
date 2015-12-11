@@ -203,3 +203,4 @@ gradlew
 
 bower_components/
 node_modules/
+bundle.js
