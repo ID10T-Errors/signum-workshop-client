@@ -3,8 +3,18 @@
 <head>
     <title>Signum Workshop</title>
 </head>
-<body>
-    <div ng-view></div>
+<body style="height: 100%;">
+    <div layout="column" flex style="height: 99%;">
+        <md-content>
+            <md-toolbar>
+                <h2 class="md-toolbar-tools">
+                    <span>Signum Workshop</span>
+                </h2>
+            </md-toolbar>
+        </md-content>
+
+        <div ng-view flex></div>
+    </div>
 
     <script src="bundle.js"></script>
 </body>
