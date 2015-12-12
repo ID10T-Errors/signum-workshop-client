@@ -1,10 +1,12 @@
-require('./node_modules/angular-material/angular-material.css')
+require('./main.css')
 
 const angular = require('angular')
 const ngRoute = require('angular-route')
 const ngMaterial = require('angular-material')
+require('ace-webapp')
+const uiAce = require('angular-ui-ace')
 
-const app = angular.module('signum', [ngRoute, ngMaterial])
+const app = angular.module('signum', [ngRoute, ngMaterial, 'ui.ace'])
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

@@ -8,7 +8,10 @@
         </md-sidenav>
         <md-content flex="90" layout-padding>
             <div layout="column" layout-fill layout-align="top center">
-                <iframe src="http://ztaylor54.github.io/code-editor" height="100%" width="100%" style="border: 0;"></iframe>
+                <div ui-ace="{
+                  workerPath: 'node_modules/ace-webapp/src-min-noconflict',
+                  mode: 'java'
+                 }" ng-trim="true"></div>
             </div>
         </md-content>
     </section>
