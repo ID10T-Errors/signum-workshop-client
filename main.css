@@ -1,0 +1,6 @@
+@import "node_modules/angular-material/angular-material.css";
+
+.ace_editor {
+    height: 100%;
+    width: 100%;
+}

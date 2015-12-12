@@ -6,6 +6,13 @@
                 <p>Lorem ipsum</p>
             </md-content>
         </md-sidenav>
-        <iframe src="http://ztaylor54.github.io/code-editor" height="calc(100vh-10%)" flex="auto" style="border: 0;"></iframe>
+        <md-content flex="90" layout-padding>
+            <div layout="column" layout-fill layout-align="top center">
+                <div ui-ace="{
+                  workerPath: 'node_modules/ace-webapp/src-min-noconflict',
+                  mode: 'java'
+                 }" ng-trim="true"></div>
+            </div>
+        </md-content>
     </section>
 </div>
