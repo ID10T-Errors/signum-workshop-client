@@ -1,4 +1,4 @@
-<div layout="column" style="height: 100%" ng-cloak>
+<div layout="column" style="height: 89vh" ng-cloak>
     <section layout="row" flex>
         <md-sidenav flex="10" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
             <md-content flex layout-padding>
@@ -6,10 +6,6 @@
                 <p>Lorem ipsum</p>
             </md-content>
         </md-sidenav>
-        <md-content flex="90" layout-padding>
-            <div layout="column" layout-fill layout-align="top center">
-                <iframe src="http://ztaylor54.github.io/code-editor" height="100%" width="100%" style="border: 0;"></iframe>
-            </div>
-        </md-content>
+        <iframe src="http://ztaylor54.github.io/code-editor" height="calc(100vh-10%)" flex="auto" style="border: 0;"></iframe>
     </section>
 </div>
