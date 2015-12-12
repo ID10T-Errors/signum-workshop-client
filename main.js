@@ -12,6 +12,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'partials/section.html',
             controller: 'SectionController'
         })
+        .when('/section/:section/:problem', {
+            templateUrl: 'partials/problem.html',
+            controller: 'ProblemController'
+        })
         .when('/home', {
             templateUrl: 'partials/home.html',
             controller: 'HomePageController'
@@ -50,4 +54,8 @@ app.controller('HomePageController', ['$scope', '$timeout', 'SectionService', fu
 
 app.controller('SectionController', ['$scope', '$routeParams', 'SectionService', function ($scope, $routeParams, SectionService) {
     $scope.section = SectionService.getSection($routeParams.section)
+}])
+
+app.controller('ProblemController', ['$scope', function ($scope) {
+
 }])
