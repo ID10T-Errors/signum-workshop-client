@@ -2,8 +2,9 @@
     <section layout="row" flex>
         <md-sidenav flex="10" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
             <md-content flex layout-padding>
-                <h1>Problem Name</h1>
-                <p>Lorem ipsum</p>
+                <h1>{{ problem.name }}</h1>
+                <div>{{ problem.description }}</div>
+                <p>Filename: <code>{{ problem.filename }}</code></p>
             </md-content>
         </md-sidenav>
         <md-content flex="90" layout-padding>
@@ -11,8 +12,31 @@
                 <div ui-ace="{
                   workerPath: 'node_modules/ace-webapp/src-min-noconflict',
                   mode: 'java'
-                 }" ng-trim="true"></div>
+                 }" ng-trim="true">class Cat {
+    public static void main(String[] args) {
+        byte[] buffer = new byte[1024];
+        int len;
+        while ((len = System.in.read(buffer)) != -1) {
+            System.out.write(buffer, 0, len);
+        }
+    }
+}</div>
             </div>
+            <md-fab-speed-dial class="md-scale" md-direction="up" id="fab">
+                <md-fab-trigger>
+                    <md-button aria-label="menu" class="md-fab md-warn">
+                        <md-icon md-font-set="material-icons">menu</md-icon>
+                    </md-button>
+                </md-fab-trigger>
+                <md-fab-actions>
+                    <md-button aria-label="Run" class="md-fab md-raised md-mini">
+                        <md-icon md-font-set="material-icons" aria-label="Run">play_circle_filled</md-icon>
+                    </md-button>
+                    <md-button aria-label="Submit" class="md-fab md-raised md-mini">
+                        <md-icon md-font-set="material-icons" aria-label="Submit">cloud_upload</md-icon>
+                    </md-button>
+                </md-fab-actions>
+            </md-fab-speed-dial>
         </md-content>
     </section>
 </div>

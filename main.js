@@ -59,5 +59,9 @@ app.controller('SectionController', ['$scope', '$routeParams', 'SectionService',
 }])
 
 app.controller('ProblemController', ['$scope', function ($scope) {
-
+    $scope.problem = {
+        name: 'cat',
+        description: 'Write a program that prints its stdin to its stdout.',
+        filename: 'Cat.java'
+    }
 }])
