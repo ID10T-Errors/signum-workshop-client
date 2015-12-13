@@ -5,3 +5,13 @@
     height: 100%;
     width: 100%;
 }
+
+.md-button.md-fab md-icon {
+    color: #212121;
+}
+
+#fab {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+}
