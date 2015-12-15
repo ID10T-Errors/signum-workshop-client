@@ -71,11 +71,8 @@ export class Repository {
       }, function (err, res) {
         if (err) return reject(err)
         if (res.type !== 'array') return reject(new TypeError('path is a path of a file'))
-        var contents = []
-        for (file of res) {
-          contents.push(file.name)
-        }
-        resolve(contents)
+        res.map(file => file.name)
+        resolve(res)
       })
     })
   }
