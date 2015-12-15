@@ -3,12 +3,14 @@ require('./main.css')
 const angular = require('angular')
 const ngRoute = require('angular-route')
 const ngMaterial = require('angular-material')
+const ngSanitize = require('angular-sanitize')
 require('ace-webapp')
 const uiAce = require('angular-ui-ace')
 
 const github = require('./abstract/github')
+const markdown = require('./abstract/markdown')
 
-const app = angular.module('signum', [ngRoute, ngMaterial, 'ui.ace'])
+const app = angular.module('signum', [ngRoute, ngMaterial, 'ui.ace', 'ngSanitize'])
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -60,11 +62,11 @@ app.controller('SectionController', ['$scope', '$routeParams', 'SectionService',
     $scope.section = SectionService.getSection($routeParams.section)
 }])
 
-app.controller('ProblemController', ['$scope', function ($scope) {
+app.controller('ProblemController', ['$scope', '$sce', function ($scope, $sce) {
   var repo = new github.Repository('jdeans289', 'java-practice-problems', function (err) {
     if (err) throw err
     repo.cat('/CS1-packet1/crawl.md', 'gh-pages').then(function (contents) {
-      $scope.$apply(() => $scope.problem.description = contents)
+      $scope.$apply(() => $scope.problem.description = $sce.trustAsHtml(markdown.toHtml(contents)))
     }).catch(function (err) {
       if (err) throw err
     })

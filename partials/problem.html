@@ -3,7 +3,7 @@
         <md-sidenav flex="10" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
             <md-content flex layout-padding>
                 <h1>{{ problem.name }}</h1>
-                <div>{{ problem.description }}</div>
+                <div ng-bind-html="problem.description"></div>
                 <p>Filename: <code>{{ problem.filename }}</code></p>
             </md-content>
         </md-sidenav>
