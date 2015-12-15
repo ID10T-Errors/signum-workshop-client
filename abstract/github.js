@@ -42,17 +42,37 @@ class Repository {
     return this.int_userName
   }
 
-  getFileContents (path, ref) {
+  cat (path, ref) {
     return new Promise(function (resolve, reject) {
       if (typeof path !== 'string') return reject(new TypeError('path must be a string.'))
       github.repos.getContent({
-        user: this.repo.owner.login,
-        repo: this.userName,
+        user: this.userName,
+        repo: this.name,
         path: path,
         ref: ref
       }, function (err, res) {
         if (err) return reject(err)
-        resolve(res)
+        if (typeof res === 'array') return reject(new TypeError('path is a path of a directory'))
+        resolve(res.content)
+      })
+    })
+  }
+  ls (path, ref) {
+    return new Promise(function (resolve, reject) {
+      if (typeof path !== 'string') return reject(new TypeError('path must be a string.'))
+      github.repos.getContent({
+        user: this.userName,
+        repo: this.name,
+        path: path,
+        ref: ref
+      }, function (err, res) {
+        if (err) return reject(err)
+        if (res.type !== 'array') return reject(new TypeError('path is a path of a file'))
+        var contents = []
+        for (file of res) {
+          contents.push(file.name)
+        }
+        resolve(contents)
       })
     })
   }
