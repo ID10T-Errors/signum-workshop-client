@@ -61,7 +61,15 @@ app.controller('SectionController', ['$scope', '$routeParams', 'SectionService',
 }])
 
 app.controller('ProblemController', ['$scope', function ($scope) {
-    $scope.problem = {
+  var repo = new github.Repository('jdeans289', 'java-practice-problems', function (err) {
+    if (err) throw err
+    repo.cat('/CS1-packet1/crawl.md', 'gh-pages').then(function (contents) {
+      $scope.$apply(() => $scope.problem.description = contents)
+    }).catch(function (err) {
+      if (err) throw err
+    })
+  })
+  $scope.problem = {
         name: 'cat',
         description: 'Write a program that prints its stdin to its stdout.',
         filename: 'Cat.java'

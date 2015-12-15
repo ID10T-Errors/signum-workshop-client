@@ -9,19 +9,20 @@ var github = new GitHubApi({
   pathPrefix: ''
 })
 
-class Repository {
+export class Repository {
   constructor(user, repo, cb) {
+    var self = this
     github.repos.get({
       user: user,
       repo: repo
     }, function (err, res) {
       if (err != null) return cb(err)
-      this.repo = res
-      this.int_name = res.name
-      this.int_description = res.description
-      this.int_fullName = res.full_name
-      this.int_userName = res.owner.login
-      cb(null, this)
+      self.repo = res
+      self.int_name = res.name
+      self.int_description = res.description
+      self.int_fullName = res.full_name
+      self.int_userName = res.owner.login
+      cb(null, self)
     })
   }
 
@@ -43,44 +44,44 @@ class Repository {
   }
 
   cat (path, ref) {
+    var self = this
     return new Promise(function (resolve, reject) {
       if (typeof path !== 'string') return reject(new TypeError('path must be a string.'))
       github.repos.getContent({
-        user: this.userName,
-        repo: this.name,
+        user: self.userName,
+        repo: self.name,
         path: path,
         ref: ref
       }, function (err, res) {
         if (err) return reject(err)
         if (typeof res === 'array') return reject(new TypeError('path is a path of a directory'))
-        resolve(res.content)
+        resolve(atob(res.content))
       })
     })
   }
   ls (path, ref) {
+    var self = this
     return new Promise(function (resolve, reject) {
       if (typeof path !== 'string') return reject(new TypeError('path must be a string.'))
       github.repos.getContent({
-        user: this.userName,
-        repo: this.name,
+        user: self.userName,
+        repo: self.name,
         path: path,
         ref: ref
       }, function (err, res) {
         if (err) return reject(err)
         if (res.type !== 'array') return reject(new TypeError('path is a path of a file'))
-        var contents = []
-        for (file of res) {
-          contents.push(file.name)
-        }
-        resolve(contents)
+        res.map(file => file.name)
+        resolve(res)
       })
     })
   }
   lsBranches () {
+    var self = this
     return new Promise(function (resolve, reject) {
       github.repos.getBranches({
-        user: this.userName,
-        repo: this.name,
+        user: self.userName,
+        repo: self.name,
         per_page: 9999           // There is no overkill.
       }, function (err, res) {
         if (err) return reject(err)
