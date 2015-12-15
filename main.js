@@ -6,6 +6,8 @@ const ngMaterial = require('angular-material')
 require('ace-webapp')
 const uiAce = require('angular-ui-ace')
 
+const github = require('./abstract/github')
+
 const app = angular.module('signum', [ngRoute, ngMaterial, 'ui.ace'])
 
 app.config(['$routeProvider', function ($routeProvider) {

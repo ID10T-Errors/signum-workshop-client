@@ -28,14 +28,25 @@
     "angular-material": "^0.11.4",
     "angular-route": "^1.4.8",
     "angular-ui-ace": "^0.2.3",
+    "github": "jamestalmage/node-github#browserify-compatibility",
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
     "browserify-css": "^0.8.2"
   },
   "browserify": {
     "transform": [
-      "browserify-css"
+      "browserify-css",
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
     ]
   }
 }
