@@ -28,6 +28,7 @@
     "angular-material": "^0.11.4",
     "angular-route": "^1.4.8",
     "angular-ui-ace": "^0.2.3",
+    "github": "^0.2.4",
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {
