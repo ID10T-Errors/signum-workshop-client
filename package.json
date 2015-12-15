@@ -32,11 +32,13 @@
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {
-    "browserify-css": "^0.8.2"
+    "browserify-css": "^0.8.2",
+    "es6ify": "^1.6.0"
   },
   "browserify": {
     "transform": [
-      "browserify-css"
+      "browserify-css",
+      "es6ify"
     ]
   }
 }

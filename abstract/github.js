@@ -38,6 +38,7 @@ class Repository {
   get userName () {
     if (this.int_userName == null) throw new ReferenceError('The username hasn\'t been defined yet. Has the constructor callback been called yet?')
     return this.int_userName
+  }
 
   getFileContents (path, ref) {
     return new Promise(function (resolve, reject) {
@@ -51,6 +52,6 @@ class Repository {
         if (err) return reject(err)
         resolve(res)
       })
-    }
+    })
   }
 }
