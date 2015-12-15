@@ -76,4 +76,21 @@ class Repository {
       })
     })
   }
+  lsBranches () {
+    return new Promise(function (resolve, reject) {
+      github.repos.getBranches({
+        user: this.userName,
+        repo: this.name,
+        per_page: 9999           // There is no overkill.
+      }, function (err, res) {
+        if (err) return reject(err)
+        var branches = []
+        for (branch of res) {
+          branch.name.commit = branch.commit.sha
+          branches.push(branch.name)
+        }
+        resolve(branches)
+      })
+    })
+  }
 }
