@@ -32,7 +32,8 @@
     "github": "jamestalmage/node-github#browserify-compatibility",
     "highlight.js": "^9.0.0",
     "normalize.css": "^3.0.3",
-    "remarkable": "^1.6.1"
+    "remarkable": "^1.6.1",
+    "yamljs": "^0.2.4"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
