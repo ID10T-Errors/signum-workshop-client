@@ -63,15 +63,16 @@ app.controller('SectionController', ['$scope', '$routeParams', 'SectionService',
 }])
 
 app.controller('ProblemController', ['$scope', '$sce', function ($scope, $sce) {
-  var repo = new github.Repository('jdeans289', 'java-practice-problems', function (err) {
-    if (err) throw err
-    repo.cat('/CS1-packet1/crawl.md', 'gh-pages').then(function (contents) {
-      $scope.$apply(() => $scope.problem.description = $sce.trustAsHtml(markdown.toHtml(contents)))
-    }).catch(function (err) {
-      if (err) throw err
+    var repo = new github.Repository('jdeans289', 'java-practice-problems', function (err) {
+        if (err) throw err
+        repo.cat('/CS1-packet1/crawl.md', 'gh-pages').then(function (contents) {
+            $scope.$apply(() => $scope.problem.description = $sce.trustAsHtml(markdown.toHtml(contents))
+            )
+        }).catch(function (err) {
+            if (err) throw err
+        })
     })
-  })
-  $scope.problem = {
+    $scope.problem = {
         name: 'cat',
         description: 'Write a program that prints its stdin to its stdout.',
         filename: 'Cat.java'
