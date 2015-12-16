@@ -1,4 +1,5 @@
 const GitHubApi = require('github')
+const YAML = require('yamljs')
 
 var github = new GitHubApi({
     version: '3.0.0',
@@ -60,6 +61,17 @@ export class Repository {
                 if (typeof res === 'array') return reject(new TypeError('path is a path of a directory'))
                 resolve(atob(res.content))
             })
+        })
+    }
+
+    catJson (path, ref) {
+        return this.cat(path, ref).then(function (text) {
+            return JSON.parse(text)
+        })
+    }
+    catYaml(path, ref) {
+        return this.cat(path, ref).then(function (text) {
+            return YAML.parse(text)
         })
     }
 

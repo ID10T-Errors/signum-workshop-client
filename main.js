@@ -65,9 +65,13 @@ app.controller('SectionController', ['$scope', '$routeParams', 'SectionService',
 app.controller('ProblemController', ['$scope', '$sce', function ($scope, $sce) {
     var repo = new github.Repository('jdeans289', 'java-practice-problems', function (err) {
         if (err) throw err
-        repo.cat('/CS1-packet1/crawl.md', 'gh-pages').then(function (contents) {
-            $scope.$apply(() => $scope.problem.description = $sce.trustAsHtml(markdown.toHtml(contents))
-            )
+        repo.catYaml('/CS1-packet1/crawl.yml', 'gh-pages').then(function (contents) {
+            $scope.$apply(function () {
+                $scope.problem.description = $sce.trustAsHtml(markdown.toHtml(contents.overview))
+                $scope.code = 'class ' + (contents.filename.split('.')[0]) + ' {\n    \n}'
+                $scope.problem.name = contents.title
+                $scope.problem.filename = contents.filename
+            })
         }).catch(function (err) {
             if (err) throw err
         })

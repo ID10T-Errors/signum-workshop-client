@@ -18,16 +18,7 @@
         <div ui-ace="{
                   workerPath: 'node_modules/ace-webapp/src-min-noconflict',
                   mode: 'java'
-                 }" ng-trim="true">class Cat {
-          public static void main(String[] args) {
-          byte[] buffer = new byte[1024];
-          int len;
-          while ((len = System.in.read(buffer)) != -1) {
-          System.out.write(buffer, 0, len);
-          }
-          }
-          }
-        </div>
+                 }" ng-trim="true" ng-model="code"></div>
       </div>
       <md-fab-speed-dial class="md-scale" md-direction="up" id="fab">
         <md-fab-trigger>
