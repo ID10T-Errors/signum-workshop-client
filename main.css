@@ -26,7 +26,7 @@ md-tabs-content-wrapper {
 }
 
 md-tab, md-tabs {
-    height: 100%
+    height: 100%;
 }
 
 .ng-scope {

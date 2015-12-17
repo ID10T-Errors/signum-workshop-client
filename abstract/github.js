@@ -101,7 +101,7 @@ export class Repository {
             }, function (err, res) {
                 if (err) return reject(err)
                 var branches = []
-                for (branch of res) {
+                for (let branch of res) {
                     branch.name.commit = branch.commit.sha
                     branches.push(branch.name)
                 }

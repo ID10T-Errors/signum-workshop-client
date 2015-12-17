@@ -12,6 +12,24 @@
         <div ng-bind-html="problem.description"></div>
         <p>Filename: <code>{{ problem.filename }}</code></p>
       </md-content>
+      <md-fab-toolbar
+                      md-direction="right">
+        <md-fab-trigger class="align-with-text">
+          <md-button aria-label="menu" class="md-fab md-primary">
+            <md-icon md-svg-src="material-design-icons/navigation/svg/production/ic_menu_24px.svg"></md-icon>
+          </md-button>
+        </md-fab-trigger>
+        <md-toolbar>
+          <md-fab-actions class="md-toolbar-tools">
+            <md-button aria-label="run" class="md-icon-button">
+              <md-icon md-svg-src="material-design-icons/av/svg/production/ic_play_circle_filled_24px.svg"></md-icon>
+            </md-button>
+            <md-button aria-label="submit" class="md-icon-button">
+              <md-icon md-svg-src="material-design-icons/file/svg/production/ic_cloud_upload_24px.svg"></md-icon>
+            </md-button>
+          </md-fab-actions>
+        </md-toolbar>
+      </md-fab-toolbar>
     </md-sidenav>
     <md-content flex="90" layout-padding>
       <div layout="column" layout-fill layout-align="top center">
@@ -20,21 +38,6 @@
                   mode: 'java'
                  }" ng-trim="true" ng-model="code"></div>
       </div>
-      <md-fab-speed-dial class="md-scale" md-direction="up" id="fab">
-        <md-fab-trigger>
-          <md-button aria-label="menu" class="md-fab md-warn">
-            <md-icon md-font-set="material-icons">menu</md-icon>
-          </md-button>
-        </md-fab-trigger>
-        <md-fab-actions>
-          <md-button aria-label="Run" class="md-fab md-raised md-mini">
-            <md-icon md-font-set="material-icons" aria-label="Run">play_circle_filled</md-icon>
-          </md-button>
-          <md-button aria-label="Submit" class="md-fab md-raised md-mini">
-            <md-icon md-font-set="material-icons" aria-label="Submit">cloud_upload</md-icon>
-          </md-button>
-        </md-fab-actions>
-      </md-fab-speed-dial>
     </md-content>
   </section>
 </div>
