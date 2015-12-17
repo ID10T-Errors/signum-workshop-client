@@ -15,10 +15,10 @@
             <md-tabs md-selected="section" md-border-bottom md-autoselect>
                 <md-tab ng-repeat="section in sections"
                         label="{{section.title}}">
-                    <md-tabs md-selected="problem" md-border-bottom md-autoselect>
-                        <md-tab ng-repeat="problem in section.problems"
-                                label="{{problem.title}}">
-                            <div ng-view flex></div>
+                    <md-tabs md-selected="problem" md-border-bottom md-autoselect style="height: 100%">
+                        <md-tab ng-repeat="problem in currentSection.problems"
+                                label="{{problem.name}}">
+                            <div ng-view flex style="height: 100%"></div>
                         </md-tab>
                     </md-tabs>
                 </md-tab>
