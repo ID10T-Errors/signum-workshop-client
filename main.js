@@ -60,6 +60,7 @@ app.service('SectionService', ['$rootScope', '$sce', function ($scope, $sce) {
           problem.template = 'class ' + (contents.filename.split('.')[0]) + ' {\n    \n}'
           problem.name = contents.title
           problem.filename = contents.filename
+          problem.contents = contents
           console.log(problem)
           callback(null, problem)
         }).catch(function (err) {
@@ -145,20 +146,31 @@ app.controller('SectionController', ['$scope', '$routeParams', 'SectionService',
 app.controller('ProblemController', ['$scope', 'ProblemService', '$http', function ($scope, ProblemService, $http) {
   ProblemService.update(function (problem) {
     $scope.problem = problem
+    $scope.code = problem.template
   })
   $scope.run = function () {
+    console.log('$scope.run', $scope.problem.contents.cases)
+    var environment = {
+      SIGNUM_CLASSNAME: $scope.problem.filename.split('.')[0],
+      SIGNUM_CODE: $scope.code
+    }
+    for (let file in $scope.problem.contents.cases[0].files) {
+      if ($scope.problem.contents.cases[0].files.hasOwnProperty(file)) {
+        environment['SIGNUM_FILE_' + file] = $scope.problem.contents.cases[0].files[file]
+      }
+    }
+    console.log(environment)
     return $http({
       method: 'POST',
       url: 'http://internal.ctftoolkit.com:8080/run/java',
       data: {
-        environment: {
-          SIGNUM_CLASSNAME: $scope.problem.filename.split('.')[0],
-          SIGNUM_CODE: $scope.code
-        },
+        environment: environment,
         code: $scope.code
       }
     }).then(function (output) {
       alert(output.data)
+    }).catch(function (err) {
+      alert(JSON.stringify(err))
     })
   }
   window.run = $scope.run
