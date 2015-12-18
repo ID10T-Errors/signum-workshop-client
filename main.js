@@ -142,8 +142,23 @@ app.controller('SectionController', ['$scope', '$routeParams', 'SectionService',
   $scope.section = SectionService.getSection($routeParams.section)
 }])
 
-app.controller('ProblemController', ['$scope', 'ProblemService', function ($scope, ProblemService) {
+app.controller('ProblemController', ['$scope', 'ProblemService', '$http', function ($scope, ProblemService, $http) {
   ProblemService.update(function (problem) {
     $scope.problem = problem
   })
+  $scope.run = function () {
+    $http({
+      method: 'POST',
+      url: 'http://internal.ctftoolkit.com:8080/run/' + $scope.problem.languages[0],
+      data: {
+        environment: {
+          SIGNUM_CLASSNAME: $scope.problem.filename.split('.')[0],
+          SIGNUM_CODE: $scope.code
+        },
+        code: $scope.code
+      }
+    }).then(function (output) {
+      alert(output)
+    })
+  }
 }])
