@@ -147,9 +147,9 @@ app.controller('ProblemController', ['$scope', 'ProblemService', '$http', functi
     $scope.problem = problem
   })
   $scope.run = function () {
-    $http({
+    return $http({
       method: 'POST',
-      url: 'http://internal.ctftoolkit.com:8080/run/' + $scope.problem.languages[0],
+      url: 'http://internal.ctftoolkit.com:8080/run/java',
       data: {
         environment: {
           SIGNUM_CLASSNAME: $scope.problem.filename.split('.')[0],
@@ -158,7 +158,8 @@ app.controller('ProblemController', ['$scope', 'ProblemService', '$http', functi
         code: $scope.code
       }
     }).then(function (output) {
-      alert(output)
+      alert(output.data)
     })
   }
+  window.run = $scope.run
 }])
