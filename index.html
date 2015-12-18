@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html ng-app="signum">
 <head>
-  <title>Signum Workshop</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <title>Signum Workshop</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 </head>
 <body style="height: 100%;">
-  <div layout="column" flex style="height: 99%;">
-    <md-content>
-      <md-toolbar>
-        <h2 class="md-toolbar-tools">
-          <span>Signum Workshop</span>
-        </h2>
-      </md-toolbar>
-    </md-content>
+    <div layout="column" flex style="height: 99%;" ng-controller="ToolbarController">
+        <md-content style="height: 100%;">
+            <md-toolbar>
+                <h2 class="md-toolbar-tools">
+                    <span>Signum Workshop</span>
+                </h2>
+            </md-toolbar>
+            <md-tabs md-selected="section" md-border-bottom md-autoselect style="height: 100%;">
+                <md-tab ng-repeat="section in sections"
+                        label="{{section.title}}" style="height: 100%;">
+                    <md-tabs md-selected="problem" md-border-bottom md-autoselect style="height: 100%;">
+                        <md-tab ng-repeat="problem in currentSection.problems"
+                                label="{{problem.name}}" style="height: 100%;">
+                            <div ng-view flex style="height: 100%;"></div>
+                        </md-tab>
+                    </md-tabs>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
 
-    <div ng-view flex></div>
-  </div>
-
-  <script src="bundle.js"></script>
+    <script src="bundle.js"></script>
 </body>
 </html>

@@ -16,3 +16,19 @@
     bottom: 25px;
     right: 25px;
 }
+
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item.md-active:not([disabled]) {
+    color: black;
+}
+
+md-tabs-content-wrapper {
+    height: 100%;
+}
+
+md-tab, md-tabs {
+    height: 100%;
+}
+
+.ng-scope {
+    height: 100%;
+}
