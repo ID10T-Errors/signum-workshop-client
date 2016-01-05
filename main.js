@@ -162,7 +162,7 @@ app.controller('ProblemController', ['$scope', 'ProblemService', '$http', functi
     console.log(environment)
     return $http({
       method: 'POST',
-      url: 'http://internal.ctftoolkit.com:8080/run/java',
+      url: 'http://signumd-5b4087ed.lambdavps.svc.tutum.io:3000/run/java',
       data: {
         environment: environment,
         code: $scope.code
