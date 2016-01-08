@@ -51,7 +51,9 @@
       <div layout="column" layout-fill layout-align="top center">
         <div ui-ace="{
                   workerPath: 'node_modules/ace-webapp/src-min-noconflict',
-                  mode: 'java'
+                  mode: 'java',
+                  enableBasicAutocompletion: true,
+                  enableSnippets: true
                  }" ng-trim="true" ng-model="code"></div>
       </div>
     </md-content>
