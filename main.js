@@ -159,12 +159,12 @@ app.controller('SectionController', ['$scope', '$routeParams', 'SectionService',
   $scope.section = SectionService.getSection($routeParams.section)
 }])
 
-app.controller('ProblemController', ['$scope', 'ProblemService', '$http', function ($scope, ProblemService, $http) {
+app.controller('ProblemController', ['$scope', 'ProblemService', '$http', '$mdDialog', function ($scope, ProblemService, $http, $mdDialog) {
   ProblemService.update(function (problem) {
     $scope.problem = problem
     $scope.code = problem.template
   })
-  $scope.run = function () {
+  $scope.run = function (ev) {
     console.log('$scope.run', $scope.problem.contents.cases)
     var environment = {
       SIGNUM_CLASSNAME: $scope.problem.filename.split('.')[0],
@@ -184,10 +184,36 @@ app.controller('ProblemController', ['$scope', 'ProblemService', '$http', functi
         code: $scope.code
       }
     }).then(function (output) {
-      alert(output.data)
+      return $mdDialog.show({
+        controller: 'ResultDialogController',
+        templateUrl: 'partials/result-dialog.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        locals: {
+          output: output.data,
+          expected: $scope.problem.contents.cases[0].stdout
+        }
+      })
+    }).then(function (answer) {
+      alert(answer)
     }).catch(function (err) {
-      alert(JSON.stringify(err))
+      console.error(err)
     })
   }
   window.run = $scope.run
+}])
+
+app.controller('ResultDialogController', ['$scope', '$mdDialog', 'output', 'expected', function ($scope, $mdDialog, output, expected) {
+  $scope.output = output
+  $scope.expected = expected
+  $scope.hide = function() {
+    $mdDialog.hide()
+  }
+  $scope.cancel = function() {
+    $mdDialog.cancel()
+  }
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer)
+  }
 }])
