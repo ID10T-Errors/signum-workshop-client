@@ -1,0 +1,41 @@
+<md-dialog aria-label="Results">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Results</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="material-design-icons/navigation/svg/production/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content  style="max-width:800px;max-height:400px;min-height:400px;min-width:800px;">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Results">
+                    <md-content class="md-padding">
+                        <p><strong>Your output:</strong></p>
+                        <pre><code>{{ output }}</code></pre>
+                        <span style="height: 25px; visibility: hidden;"></span>
+                        <p><strong>Expected output:</strong></p>
+                        <pre><code>{{ expected }}</code></pre>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Hints">
+                    <md-content class="md-padding">
+                        <h3>Helpful Links</h3>
+                        <p><strong>coming soon</strong></p>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button href="https://docs.oracle.com/javase/7/docs/api/" target="_blank" md-autofocus>
+                Java Docs
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="answer(true)" >
+                Submit
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
