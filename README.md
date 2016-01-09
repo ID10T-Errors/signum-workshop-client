@@ -8,5 +8,5 @@ npm install -g browserify
 # Building
 
 ```shell
-browserify main.js -o bundle.js
+browserify -g aliasify main.js -o bundle.js
 ```
