@@ -1,12 +1,12 @@
 <!--
     Copyright 2016 Signum Collective
-    
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-    
+
       http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,24 +27,7 @@
         <h1>{{ problem.name }}</h1>
         <div ng-bind-html="problem.description"></div>
         <p>Filename: <code>{{ problem.filename }}</code></p>
-        <md-fab-toolbar
-                md-direction="right">
-          <md-fab-trigger class="align-with-text">
-            <md-button aria-label="menu" class="md-fab md-primary">
-              <md-icon md-svg-src="material-design-icons/navigation/svg/production/ic_menu_24px.svg"></md-icon>
-            </md-button>
-          </md-fab-trigger>
-          <md-toolbar>
-            <md-fab-actions class="md-toolbar-tools">
-              <md-button aria-label="run" class="md-icon-button" ng-click="run()">
-                <md-icon md-svg-src="material-design-icons/av/svg/production/ic_play_circle_filled_24px.svg"></md-icon>
-              </md-button>
-              <md-button aria-label="submit" class="md-icon-button">
-                <md-icon md-svg-src="material-design-icons/file/svg/production/ic_cloud_upload_24px.svg"></md-icon>
-              </md-button>
-            </md-fab-actions>
-          </md-toolbar>
-        </md-fab-toolbar>
+        <md-button class="md-raised md-primary" aria-label="run" ng-click="run()" style="width: 93%;"><md-icon md-svg-src="material-design-icons/av/svg/production/ic_play_circle_filled_24px.svg"></md-icon></md-button>
       </md-content>
     </md-sidenav>
     <md-content flex="90" layout-padding>
