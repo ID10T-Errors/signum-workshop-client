@@ -27,7 +27,7 @@
         <h1>{{ problem.name }}</h1>
         <div ng-bind-html="problem.description"></div>
         <p>Filename: <code>{{ problem.filename }}</code></p>
-        <md-button class="md-raised md-primary" aria-label="run" ng-click="run()" style="width: 93%;"><md-icon md-svg-src="material-design-icons/av/svg/production/ic_play_circle_filled_24px.svg"></md-icon></md-button>
+        <md-button class="md-raised md-primary" aria-label="run" ng-click="run($event)" style="width: 93%;"><md-icon md-svg-src="material-design-icons/av/svg/production/ic_play_circle_filled_24px.svg"></md-icon></md-button>
       </md-content>
     </md-sidenav>
     <md-content flex="90" layout-padding>
