@@ -1,18 +1,18 @@
 /*
-    Copyright 2016 Signum Collective
-    
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-    
-      http://www.apache.org/licenses/LICENSE-2.0
-    
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-*/
+ Copyright 2016 Signum Collective
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
 
 require('./main.css')
 
@@ -31,189 +31,231 @@ const markdown = require('./abstract/markdown')
 const app = angular.module('signum', [ngRoute, ngMaterial, 'ui.ace', 'ngSanitize'])
 
 app.config(['$routeProvider', function ($routeProvider) {
-  $routeProvider
-      .when('/section/:section', {
-        templateUrl: 'partials/section.html',
-        controller:  'SectionController'
-      })
-      .when('/section/:section/:problem', {
-        templateUrl: 'partials/problem.html',
-        controller:  'ProblemController'
-      })
-      .when('/home', {
-        templateUrl: 'partials/home.html',
-        controller:  'HomePageController'
-      })
-      .otherwise({
-        redirectTo: '/section/1/1'
-      })
+    $routeProvider
+        .when('/section/:section', {
+            templateUrl: 'partials/section.html',
+            controller:  'SectionController'
+        })
+        .when('/section/:section/:problem', {
+            templateUrl: 'partials/problem.html',
+            controller:  'ProblemController'
+        })
+        .when('/home', {
+            templateUrl: 'partials/home.html',
+            controller:  'HomePageController'
+        })
+        .otherwise({
+            redirectTo: '/section/1/1'
+        })
 }])
 
 app.service('SectionService', ['$rootScope', '$sce', function ($scope, $sce) {
-  var sections = [
-    {
-      title:    'Packet 1',
-      problems: []
-    }
-  ]
-  var repo = new github.Repository('jdeans289', 'java-practice-problems', function (err) {
-    if (err) throw err
-    repo.ls('/CS1-packet1', 'gh-pages').then(function (files) {
-      var yamlFiles = []
-      for (let file of files) {
-        if (file.indexOf('.yml') > -1) {
-          yamlFiles.push(file)
+    var sections = [
+        {
+            title:    'Packet 1',
+            problems: []
+        },
+        {
+            title:    'Packet 2',
+            problems: []
         }
-      }
-      async.map(yamlFiles, function (file, callback) {
-        repo.catYaml('/CS1-packet1/' + file, 'gh-pages').then(function (contents) {
-          var problem = {};
-          try {
-            problem.description = $sce.trustAsHtml(markdown.toHtml(contents.overview))
-          } catch (e) {
-            problem.description = $sce.trustAsHtml(contents.overview)
-          }
-          problem.template = 'class ' + (contents.filename.split('.')[0]) + ' {\n    \n}'
-          problem.name = contents.title
-          problem.filename = contents.filename
-          problem.contents = contents
-          console.log(problem)
-          callback(null, problem)
-        }).catch(function (err) {
-          console.error(err)
-          callback()
+    ]
+    var repo = new github.Repository('jdeans289', 'java-practice-problems', function (err) {
+        if (err) throw err
+        repo.ls('/CS1-packet1', 'gh-pages').then(function (files) {
+            var yamlFiles = []
+            for (let file of files) {
+                if (file.indexOf('.yml') > -1) {
+                    yamlFiles.push(file)
+                }
+            }
+            async.map(yamlFiles, function (file, callback) {
+                repo.catYaml('/CS1-packet1/' + file, 'gh-pages').then(function (contents) {
+                    var problem = {};
+                    try {
+                        problem.description = $sce.trustAsHtml(markdown.toHtml(contents.overview))
+                    } catch (e) {
+                        problem.description = $sce.trustAsHtml(contents.overview)
+                    }
+                    problem.template = 'class ' + (contents.filename.split('.')[0]) + ' {\n    \n}'
+                    problem.name = contents.title
+                    problem.filename = contents.filename
+                    problem.contents = contents
+                    console.log(problem)
+                    callback(null, problem)
+                }).catch(function (err) {
+                    console.error(err)
+                    callback()
+                })
+            }, function (err, problems) {
+                console.log('problems: ', problems)
+                var actualProblems = []
+                for (let problem of problems) {
+                    if (problem != null) actualProblems.push(problem)
+                }
+                sections[0].problems = actualProblems
+                for (let updator of updators) {
+                    updator()
+                }
+                console.log(actualProblems)
+            })
         })
-      }, function (err, problems) {
-        console.log('problems: ', problems)
-        var actualProblems = []
-        for (let problem of problems) {
-          if (problem != null) actualProblems.push(problem)
-        }
-        sections[0].problems = actualProblems
-        for (let updator of updators) {
-          updator()
-        }
-        console.log(actualProblems)
-      })
+        repo.ls('/CS1-packet2', 'gh-pages').then(function (files) {
+            var yamlFiles = []
+            for (let file of files) {
+                if (file.indexOf('.yml') > -1) {
+                    yamlFiles.push(file)
+                }
+            }
+            async.map(yamlFiles, function (file, callback) {
+                repo.catYaml('/CS1-packet2/' + file, 'gh-pages').then(function (contents) {
+                    var problem = {};
+                    try {
+                        problem.description = $sce.trustAsHtml(markdown.toHtml(contents.overview))
+                    } catch (e) {
+                        problem.description = $sce.trustAsHtml(contents.overview)
+                    }
+                    problem.template = 'class ' + (contents.filename.split('.')[0]) + ' {\n    \n}'
+                    problem.name = contents.title
+                    problem.filename = contents.filename
+                    problem.contents = contents
+                    console.log(problem)
+                    callback(null, problem)
+                }).catch(function (err) {
+                    console.error(err)
+                    callback()
+                })
+            }, function (err, problems) {
+                console.log('problems: ', problems)
+                var actualProblems = []
+                for (let problem of problems) {
+                    if (problem != null) actualProblems.push(problem)
+                }
+                sections[1].problems = actualProblems
+                for (let updator of updators) {
+                    updator()
+                }
+                console.log(actualProblems)
+            })
+        })
     })
-  })
-  var updators = []
-  return {
-    getSection:  function (index) {
-      return sections[index]
-    },
-    setSection:  function (index, value) {
-      sections[index] = value
-    },
-    getSections: function () {
-      return sections
-    },
-    update:      function (callback) {
-      updators.push(callback)
+    var updators = []
+    return {
+        getSection:  function (index) {
+            return sections[index]
+        },
+        setSection:  function (index, value) {
+            sections[index] = value
+        },
+        getSections: function () {
+            return sections
+        },
+        update:      function (callback) {
+            updators.push(callback)
+        }
     }
-  }
 }
 ])
 
 app.service('ProblemService', ['SectionService', function (SectionService) {
-  var currentProblem = SectionService.getSection(0).problems[0]
-  var updators = []
-  return {
-    getCurrentProblem: () => currentProblem,
-    setCurrentProblem: function (newCurrentProblem) {
-      currentProblem = newCurrentProblem
-      for (let updator of updators) {
-        updator(currentProblem)
-      }
-    },
-    update: callback => updators.push(callback)
-  }
+    var currentProblem = SectionService.getSection(0).problems[0]
+    var updators = []
+    return {
+        getCurrentProblem: () => currentProblem,
+        setCurrentProblem: function (newCurrentProblem) {
+            currentProblem = newCurrentProblem
+            for (let updator of updators) {
+                updator(currentProblem)
+            }
+        },
+        update: callback => updators.push(callback)
+    }
 }])
 
 app.controller('ToolbarController', ['$scope', 'SectionService', 'ProblemService', function ($scope, SectionService, ProblemService) {
-  window.$scope = $scope
-  $scope.sections = SectionService.getSections()
-  $scope.currentSection = $scope.sections[$scope.section]
-  $scope.$watch('section', function () {
+    window.$scope = $scope
+    $scope.sections = SectionService.getSections()
     $scope.currentSection = $scope.sections[$scope.section]
-  })
-  $scope.section = 0
-  $scope.$watch('problem', function () {
-    ProblemService.setCurrentProblem($scope.currentSection.problems[problem])
-  })
-  $scope.problem = 0
-  SectionService.update(function () {
-    $scope.$apply()
-  })
+    $scope.$watch('section', function () {
+        $scope.currentSection = $scope.sections[$scope.section]
+    })
+    $scope.section = 0
+    $scope.$watch('problem', function () {
+        ProblemService.setCurrentProblem($scope.currentSection.problems[problem])
+    })
+    $scope.problem = 0
+    SectionService.update(function () {
+        $scope.$apply()
+    })
 }])
 
 app.controller('HomePageController', ['$scope', '$timeout', 'SectionService', function ($scope, $timeout, SectionService) {
-  $scope.helloWorld = 'hi'
-  $timeout(function () {
-    $scope.helloWorld = ''
-  }, 2000)
-  $scope.sections = SectionService.getSections()
+    $scope.helloWorld = 'hi'
+    $timeout(function () {
+        $scope.helloWorld = ''
+    }, 2000)
+    $scope.sections = SectionService.getSections()
 }])
 
 app.controller('SectionController', ['$scope', '$routeParams', 'SectionService', function ($scope, $routeParams, SectionService) {
-  $scope.section = SectionService.getSection($routeParams.section)
+    $scope.section = SectionService.getSection($routeParams.section)
 }])
 
 app.controller('ProblemController', ['$scope', 'ProblemService', '$http', '$mdDialog', function ($scope, ProblemService, $http, $mdDialog) {
-  ProblemService.update(function (problem) {
-    $scope.problem = problem
-    $scope.code = problem.template
-  })
-  $scope.run = function (ev) {
-    console.log('$scope.run', $scope.problem.contents.cases)
-    var environment = {
-      SIGNUM_CLASSNAME: $scope.problem.filename.split('.')[0],
-      SIGNUM_CODE: $scope.code
-    }
-    for (let file in $scope.problem.contents.cases[0].files) {
-      if ($scope.problem.contents.cases[0].files.hasOwnProperty(file)) {
-        environment['SIGNUM_FILE_' + file] = $scope.problem.contents.cases[0].files[file]
-      }
-    }
-    console.log(environment)
-    return $http({
-      method: 'POST',
-      url: 'http://signumd-5b4087ed.lambdavps.svc.tutum.io:3000/run/java',
-      data: {
-        environment: environment,
-        code: $scope.code
-      }
-    }).then(function (output) {
-      return $mdDialog.show({
-        controller: 'ResultDialogController',
-        templateUrl: 'partials/result-dialog.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose: true,
-        locals: {
-          output: output.data,
-          expected: $scope.problem.contents.cases[0].stdout
-        }
-      })
-    }).then(function (answer) {
-      alert(answer)
-    }).catch(function (err) {
-      console.error(err)
+    ProblemService.update(function (problem) {
+        $scope.problem = problem
+        $scope.code = problem.template
     })
-  }
-  window.run = $scope.run
+    $scope.run = function (ev) {
+        console.log('$scope.run', $scope.problem.contents.cases)
+        var environment = {
+            SIGNUM_CLASSNAME: $scope.problem.filename.split('.')[0],
+            SIGNUM_CODE: $scope.code
+        }
+        for (let file in $scope.problem.contents.cases[0].files) {
+            if ($scope.problem.contents.cases[0].files.hasOwnProperty(file)) {
+                environment['SIGNUM_FILE_' + file] = $scope.problem.contents.cases[0].files[file]
+            }
+        }
+        console.log(environment)
+        return $http({
+            method: 'POST',
+            url: 'http://signumd-5b4087ed.lambdavps.svc.tutum.io:3000/run/java',
+            data: {
+                environment: environment,
+                code: $scope.code
+            }
+        }).then(function (output) {
+            return $mdDialog.show({
+                controller: 'ResultDialogController',
+                templateUrl: 'partials/result-dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    output: output.data,
+                    expected: $scope.problem.contents.cases[0].stdout
+                }
+            })
+        }).then(function (answer) {
+            alert(answer)
+        }).catch(function (err) {
+            console.error(err)
+        })
+    }
+    window.run = $scope.run
 }])
 
 app.controller('ResultDialogController', ['$scope', '$mdDialog', 'output', 'expected', function ($scope, $mdDialog, output, expected) {
-  $scope.output = output
-  $scope.expected = expected
-  $scope.hide = function() {
-    $mdDialog.hide()
-  }
-  $scope.cancel = function() {
-    $mdDialog.cancel()
-  }
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer)
-  }
+    $scope.output = output
+    $scope.expected = expected
+    $scope.hide = function() {
+        $mdDialog.hide()
+    }
+    $scope.cancel = function() {
+        $mdDialog.cancel()
+    }
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer)
+    }
 }])
