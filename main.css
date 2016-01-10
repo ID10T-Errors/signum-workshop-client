@@ -48,3 +48,7 @@ md-tab, md-tabs {
 .ng-scope {
     height: 100%;
 }
+
+#ghettofix::first-letter {
+    display: none;
+}
