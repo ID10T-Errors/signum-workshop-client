@@ -17,6 +17,7 @@
 require('./main.css')
 
 const async = require('async')
+const $ = require('jquery')
 
 const angular = require('angular')
 const ngRoute = require('angular-route')
@@ -218,14 +219,15 @@ app.controller('ProblemController', ['$scope', 'ProblemService', '$http', '$mdDi
       }
     }
     console.log(environment)
-    return $http({
-      method: 'POST',
-      url: 'http://signumd-5b4087ed.lambdavps.svc.tutum.io:3000/run/java',
-      data: {
-        environment: environment,
-        code: $scope.code
-      }
+    return new Promise(function (resolve, reject) {
+      $.post('http://signumd-5b4087ed.lambdavps.svc.tutum.io:3000/run/java', {environment: environment, code: $scope.code})
+      .done(function (data) {
+        resolve(data)
+      }).fail(function (err) {
+        reject(err)
+      })
     }).then(function (output) {
+      console.log(output)
       return $mdDialog.show({
         controller: 'ResultDialogController',
         templateUrl: 'partials/result-dialog.html',
@@ -233,12 +235,12 @@ app.controller('ProblemController', ['$scope', 'ProblemService', '$http', '$mdDi
         targetEvent: ev,
         clickOutsideToClose: true,
         locals: {
-          output: output.data,
+          output: output,
           expected: $scope.problem.contents.cases[0].stdout
         }
       })
     }).then(function (answer) {
-      alert(answer)
+      window.alert(answer)
     }).catch(function (err) {
       console.error(err)
     })
