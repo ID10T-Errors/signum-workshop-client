@@ -36,6 +36,7 @@
     "mime-lookup": "0.0.2",
     "normalize.css": "^3.0.3",
     "remarkable": "^1.6.1",
+    "request-promise": "^1.0.2",
     "yamljs": "^0.2.4"
   },
   "devDependencies": {
