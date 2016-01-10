@@ -49,6 +49,3 @@ md-tab, md-tabs {
     height: 100%;
 }
 
-#ghettofix::first-letter {
-    display: none;
-}
