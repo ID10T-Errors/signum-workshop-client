@@ -220,7 +220,7 @@ app.controller('ProblemController', ['$scope', 'ProblemService', '$http', '$mdDi
         console.log(environment)
         return $http({
             method: 'POST',
-            url: 'http://signumd-5b4087ed.lambdavps.svc.tutum.io:3000/run/java',
+            url: 'http://signum.services.ctftoolkit.com/run/java',
             data: {
                 environment: environment,
                 code: $scope.code
