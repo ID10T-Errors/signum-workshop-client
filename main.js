@@ -77,6 +77,17 @@ app.service('SectionService', ['$rootScope', '$sce', function ($scope, $sce) {
                     } catch (e) {
                         problem.description = $sce.trustAsHtml(contents.overview)
                     }
+                    try {
+                        problem.input = $sce.trustAsHtml(markdown.toHtml(contents.input))
+                    } catch (e) {
+                        problem.input = $sce.trustAsHtml(contents.input)
+                    }
+                    try {
+                        problem.output = $sce.trustAsHtml(markdown.toHtml(contents.output))
+                    } catch (e) {
+                        problem.output = $sce.trustAsHtml(contents.output)
+                    }
+                    problem.cases = contents.cases
                     problem.template = 'class ' + (contents.filename.split('.')[0]) + ' {\n    \n}'
                     problem.name = contents.title
                     problem.filename = contents.filename
@@ -115,6 +126,17 @@ app.service('SectionService', ['$rootScope', '$sce', function ($scope, $sce) {
                     } catch (e) {
                         problem.description = $sce.trustAsHtml(contents.overview)
                     }
+                    try {
+                        problem.input = $sce.trustAsHtml(markdown.toHtml(contents.input))
+                    } catch (e) {
+                        problem.input = $sce.trustAsHtml(contents.input)
+                    }
+                    try {
+                        problem.output = $sce.trustAsHtml(markdown.toHtml(contents.output))
+                    } catch (e) {
+                        problem.output = $sce.trustAsHtml(contents.output)
+                    }
+                    problem.cases = contents.cases
                     problem.template = 'class ' + (contents.filename.split('.')[0]) + ' {\n    \n}'
                     problem.name = contents.title
                     problem.filename = contents.filename

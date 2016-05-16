@@ -26,6 +26,14 @@
       <md-content flex layout-padding>
         <h1>{{ problem.name }}</h1>
         <div ng-bind-html="problem.description"></div>
+        <h2>Input</h2>
+        <div ng-bind-html="problem.input"></div>
+        <h2>Output</h2>
+        <div ng-bind-html="problem.output"></div>
+        <h2>Example test case</h2>
+        <li><code>stdout</code>: <pre><code>{{problem.cases[0].stdout || ''}}</code></pre></li>
+        <li><code>stdin</code>: <pre><code>{{problem.cases[0].stdin || ''}}</code></pre></li>
+        <li ng-repeat="(name, contents) in (problem.cases[0].files || [])"><code>{{name}}</code><pre><code>{{contents}}</code></pre></li>
         <p>Filename: <code>{{ problem.filename }}</code></p>
         <md-button class="md-raised md-primary" aria-label="run" ng-click="run($event)" style="width: 93%;"><md-icon md-svg-src="material-design-icons/av/svg/production/ic_play_circle_filled_24px.svg"></md-icon></md-button>
       </md-content>
