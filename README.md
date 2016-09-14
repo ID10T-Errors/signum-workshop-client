@@ -12,7 +12,7 @@ This project uses [`sgnbuild`](https://www.signum.io/sgnbuild). Simply install a
 # sudo on UNIX-like systems
 npm install --global sgnbuild
 
-git clone -b rewrite https://github.com/SignumCollective/signum-workshop-client
+git clone https://github.com/SignumCollective/signum-workshop-client
 cd signum-workshop-client
 
 sgnbuild
