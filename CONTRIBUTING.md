@@ -1,1 +1,1 @@
-To get started, [sign the Contributor License Agreement](https://www.clahub.com/agreements/ID10T-Errors/signum-workshop-client).
+To get started, <a href="https://www.clahub.com/agreements/SignumCollective/signum-workshop-client">sign the Contributor License Agreement</a>.
