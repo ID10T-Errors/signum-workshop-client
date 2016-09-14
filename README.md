@@ -20,7 +20,7 @@ sgnbuild
 
 ## Contributing
 
-We have a [Contributor License Agreement](https://www.clahub.com/agreements/ID10T-Errors/signum-workshop-client) on CLAHub you must sign prior to contributing. Please follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for any JavaScript and the [Airbnb CSS Style Guide](https://github.com/airbnb/css) for any CSS. HTML should follow these simple rules:
+We have a [Contributor License Agreement](https://www.clahub.com/agreements/SignumCollective/signum-workshop-client) on CLAHub you must sign prior to contributing. Please follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for any JavaScript and the [Airbnb CSS Style Guide](https://github.com/airbnb/css) for any CSS. HTML should follow these simple rules:
 
 1.  Always use 2-space soft tabs
 
