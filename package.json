@@ -1,0 +1,25 @@
+{
+  "name": "signum-workshop-client",
+  "version": "0.1.0",
+  "description": "![Logo](https://www.signum.io/img/logo.png)",
+  "main": "bin/index.js",
+  "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/SignumCollective/signum-workshop-client.git"
+  },
+  "author": "Signum <contact@signum.io>",
+  "license": "Apache-2.0",
+  "bugs": {
+      "url": "https://github.com/SignumCollective/signum-workshop-client/issues"
+  },
+  "homepage": "https://github.com/SignumCollective/signum-workshop-client#readme",
+  "devDependencies": {
+      "sgnbuild": "^0.10.0"
+  },
+  "sgnbuild": {
+    "type": "node"
+  }
+}
