@@ -33,40 +33,40 @@ We have a [Contributor License Agreement](https://www.clahub.com/agreements/Sign
 
 1. Always use 2-space soft tabs
 
-  Example:
+    Example:
 
-  ```html
-  <article>
-   Insert words here.
-   <figure>
-     <img src="image" />
-     <figcaption>
-       Caption
-     </figcaption>
-   </figure>
-  </article>
-  ```
+    ```html
+    <article>
+      Insert words here.
+      <figure>
+        <img src="image" />
+        <figcaption>
+          Caption
+        </figcaption>
+      </figure>
+    </article>
+    ```
 
 2. Always use `/>` at the end of any tags without a closing tag.
 
-  Example:
+    Example:
 
-  ```html
-  <img src="image" />
-  ```
+    ```html
+    <img src="image" />
+    ```
 
 3. Always have a `<!DOCTYPE html>` declaration at the top of the page.
 
-  This is the only exception to rule #2.
+    This is the only exception to rule #2.
 
-  Example:
+    Example:
 
-  ```html
-  <!DOCTYPE html>
-  <html>
-   ...contents...
-  </html>
-  ```
+    ```html
+    <!DOCTYPE html>
+    <html>
+      ...contents...
+    </html>
+    ```
 
 ## License
 
