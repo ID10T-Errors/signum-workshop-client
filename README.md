@@ -18,15 +18,6 @@ cd signum-workshop-client
 sgnbuild
 ```
 
-**Notice**: This is not currently fully building with `sgnbuild` due to an [upstream bug](https://github.com/SignumCollective/sgnbuild/issues/2). You must run webpack to build the final bundle:
-
-```sh
-# sudo on UNIX-like systems
-npm install --global webpack
-
-webpack
-```
-
 ## Contributing
 
 We have a [Contributor License Agreement](https://www.clahub.com/agreements/SignumCollective/signum-workshop-client) on CLAHub you must sign prior to contributing. Please follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for any JavaScript and the [Airbnb CSS Style Guide](https://github.com/airbnb/css) for any CSS. HTML should follow these simple rules:
