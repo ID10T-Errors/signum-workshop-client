@@ -1,6 +1,6 @@
 ![Logo](https://www.signum.io/img/logo.png)
 
-# Signum Workshop Web App
+# Signum Workshop Web App [![Build Status](https://travis-ci.org/SignumCollective/signum-workshop-client.svg?branch=rewrite)](https://travis-ci.org/SignumCollective/signum-workshop-client)
 
 ## Rewrite Development Branch
 
