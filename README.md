@@ -22,9 +22,9 @@ sgnbuild
 
 We have a [Contributor License Agreement](https://www.clahub.com/agreements/SignumCollective/signum-workshop-client) on CLAHub you must sign prior to contributing. Please follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for any JavaScript and the [Airbnb CSS Style Guide](https://github.com/airbnb/css) for any CSS. HTML should follow these simple rules:
 
-1.  Always use 2-space soft tabs
+1. Always use 2-space soft tabs
 
-     Example:
+    Example:
 
     ```html
     <article>
@@ -38,7 +38,7 @@ We have a [Contributor License Agreement](https://www.clahub.com/agreements/Sign
     </article>
     ```
 
-2.  Always use `/>` at the end of any tags without a closing tag.
+2. Always use `/>` at the end of any tags without a closing tag.
 
     Example:
 
@@ -46,7 +46,7 @@ We have a [Contributor License Agreement](https://www.clahub.com/agreements/Sign
     <img src="image" />
     ```
 
-3.  Always have a `<!DOCTYPE html>` declaration at the top of the page.
+3. Always have a `<!DOCTYPE html>` declaration at the top of the page.
 
     This is the only exception to rule #2.
 

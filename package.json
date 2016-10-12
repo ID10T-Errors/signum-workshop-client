@@ -25,6 +25,10 @@
     "sgnbuild": "^0.10.0"
   },
   "sgnbuild": {
-    "type": "node"
+    "type": "web"
+  },
+  "dependencies": {
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
   }
 }
