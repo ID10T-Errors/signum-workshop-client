@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import CodeEditor from './CodeEditor';
+
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  <CodeEditor />,
   document.getElementById('app')
 );

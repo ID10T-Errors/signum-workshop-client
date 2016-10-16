@@ -23,7 +23,7 @@
     "eslint-plugin-import": "^1.15.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.2.2",
-    "sgnbuild": "^0.12.1"
+    "sgnbuild": "^0.13.0"
   },
   "sgnbuild": {
     "type": "web"
