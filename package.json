@@ -4,7 +4,8 @@
   "description": "![Logo](https://www.signum.io/img/logo.png)",
   "main": "bin/index.js",
   "scripts": {
-    "test": "eslint src/es6"
+    "test": "eslint src/es6",
+    "build": "sgnbuild"
   },
   "repository": {
     "type": "git",
