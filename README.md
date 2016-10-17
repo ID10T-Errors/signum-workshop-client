@@ -15,7 +15,20 @@ npm install --global sgnbuild
 git clone https://github.com/SignumCollective/signum-workshop-client
 cd signum-workshop-client
 
+npm install
+
 sgnbuild
+```
+
+Alternatively, you can use the version of `sgnbuild` installed as a development dependency:
+
+```sh
+git clone https://github.com/SignumCollective/signum-workshop-client
+cd signum-workshop-client
+
+npm install
+
+npm run build
 ```
 
 ## Contributing
